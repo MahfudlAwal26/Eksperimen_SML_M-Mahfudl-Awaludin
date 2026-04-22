@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 
-def preprocess_data(input_path, output_path="preprocessed_data.csv"):
+def preprocess_data(input_path, output_path="preprocessing/preprocessed_data.csv"):
     # Load dataset
     df = pd.read_csv(input_path)
 
