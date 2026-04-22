@@ -24,7 +24,7 @@ jobs:
 
     - name: Run Preprocessing Script
       run: |
-        python src/automate_Awaludin.py
+        python preprocessing/automate_M_Mahfudl_Awaludin.py
 
     - name: Save Output Artifact
       uses: actions/upload-artifact@v4
