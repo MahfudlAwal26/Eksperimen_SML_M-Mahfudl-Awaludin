@@ -5,6 +5,9 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  contents: write   
+
 jobs:
   preprocess:
     runs-on: ubuntu-latest
@@ -26,8 +29,17 @@ jobs:
       run: |
         python preprocessing/automate_M_Mahfudl_Awaludin.py
 
-    - name: Save Output Artifact
+    - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
         name: preprocessed-data
-        path: preprocessing/preprocessed_data.csv 
+        path: preprocessing/preprocessed_data.csv
+
+    - name: Commit & Push Preprocessed Data
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "actions@github.com"
+
+        git add preprocessing/preprocessed_data.csv
+        git commit -m "Update preprocessed dataset [auto]" || echo "No changes"
+        git push
